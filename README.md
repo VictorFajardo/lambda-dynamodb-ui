@@ -23,6 +23,7 @@ lambda-dynamodb-ui/
 ├── src/
 │   ├── components/
 │   │   ├── AddNote.tsx
+│   │   ├── Loading.tsx
 │   │   └── NoteItem.tsx
 │   ├── services/
 │   │   └── api.ts
@@ -30,7 +31,6 @@ lambda-dynamodb-ui/
 │   └── main.tsx
 ├── .env               # Not committed – add VITE_API_URL
 ├── tailwind.config.ts
-├── postcss.config.js
 ├── vite.config.ts
 ├── package.json
 └── README.md
