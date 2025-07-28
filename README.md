@@ -1,69 +1,83 @@
-# React + TypeScript + Vite
+# 📝 Lambda DynamoDB UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React + Tailwind frontend to interact with the [lambda-dynamodb-infra](https://github.com/your-username/lambda-dynamodb-infra) serverless API.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**GitHub Pages:** [lambda-dynamodb-ui](https://your-username.github.io/lambda-dynamodb-ui/)
 
-## Expanding the ESLint configuration
+## ✅ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📄 Create, view, edit, and delete notes
+- ⚙️ Connects to a deployed AWS Lambda API Gateway backend
+- 🧪 Built with Vite + React + TypeScript
+- 💨 Styled with Tailwind CSS v4
+- 🧵 Minimal components structure
+- ☁️ Deployed via GitHub Actions to GitHub Pages
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📁 Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+lambda-dynamodb-ui/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── AddNote.tsx
+│   │   └── NoteItem.tsx
+│   ├── services/
+│   │   └── api.ts
+│   ├── App.tsx
+│   └── main.tsx
+├── .env               # Not committed – add VITE_API_URL
+├── tailwind.config.ts
+├── postcss.config.js
+├── vite.config.ts
+├── package.json
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧪 Local Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+1. **Clone the repo**
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+git clone https://github.com/your-username/lambda-dynamodb-ui.git
+cd lambda-dynamodb-ui
 ```
+
+2. **Create a .env file**
+
+```env
+VITE_API_URL=<YOUR_AWS_API_ENDPOINT>
+```
+
+3. **Install dependencies**
+
+```bash
+npm install
+```
+
+2. **Create a .env file**
+
+```bash
+npm run dev
+```
+
+## 🚀 Deploying to GitHub Pages
+
+The project uses peaceiris/actions-gh-pages to build and deploy from main to gh-pages.
+
+## 🔐 GitHub Actions Secrets
+
+Set this in your repo settings under Settings > Secrets and variables > Actions:
+
+- VITE_API_URL – same value as your .env file
+
+GitHub Actions will use this for your production build
+
+## ✅ GitHub Actions Workflow
+
+`.github/workflows/publish-docs.yml`
+
+Built with ❤️ by Victor Fajardo
+Backend Repo → [lambda-dynamodb-infra](https://github.com/VictorFajardo/lambda-dynamodb-infra)
