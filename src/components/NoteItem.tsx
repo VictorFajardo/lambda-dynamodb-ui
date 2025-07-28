@@ -52,7 +52,7 @@ export function NoteItem({ note, onChange }: NoteItemProps) {
             <button
               type="button"
               onClick={handleSave}
-              className="w-full text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-2 focus:outline-none focus:ring-purple-300 font-medium rounded-md text-xs px-2 py-1 dark:border-purple-500 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-600 dark:focus:ring-purple-800"
+              className="w-full text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-2 py-1 text-center mb-2 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
               disabled={loading}
             >
               Save
@@ -60,7 +60,7 @@ export function NoteItem({ note, onChange }: NoteItemProps) {
             <button
               type="button"
               onClick={() => setIsEditing(false)}
-              className="w-full text-gray-700 hover:text-white border border-gray-700 hover:bg-gray-800 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-md text-xs px-2 py-1 dark:border-gray-500 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+              className="w-full text-white bg-gray-700 border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 text-center dark:border-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-800"
             >
               Cancel
             </button>
@@ -81,13 +81,13 @@ export function NoteItem({ note, onChange }: NoteItemProps) {
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="w-full text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 font-medium rounded-md text-xs px-2 py-1 dark:border-green-500 dark:text-green-400 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+              className="w-full text-white bg-green-700 border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-2 py-1 text-center mb-2 dark:border-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800"
             >
               Edit
             </button>
             <button
               onClick={handleDelete}
-              className="w-full text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-md text-xs px-2 py-1 dark:border-red-500 dark:text-red-400 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+              className="w-full text-white bg-red-700 border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-2 py-1 text-center dark:border-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800"
             >
               Delete
             </button>

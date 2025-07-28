@@ -23,7 +23,7 @@ export const createNote = async (content: string): Promise<void> => {
   await axios.post(API_BASE_URL, { content }, HEADERS);
 };
 
-// Delete a note by ID
+// Update a note by ID
 export const updateNote = async (id: string, content: string): Promise<void> => {
   await axios.put(`${API_BASE_URL}/${id}`, { content }, HEADERS);
 };

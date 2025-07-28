@@ -1,5 +1,5 @@
 {
-  "name": "lambda-dynamodb-frontend",
+  "name": "lambda-dynamodb-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
