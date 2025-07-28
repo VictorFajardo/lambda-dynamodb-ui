@@ -1,10 +1,10 @@
 # 📝 Lambda DynamoDB UI
 
-This is a simple React + Tailwind frontend to interact with the [lambda-dynamodb-infra](https://github.com/your-username/lambda-dynamodb-infra) serverless API.
+This is a simple React + Tailwind frontend to interact with the [lambda-dynamodb-infra](https://github.com/VictorFajardo/lambda-dynamodb-infra) serverless API.
 
 ## 🔗 Live Demo
 
-**GitHub Pages:** [lambda-dynamodb-ui](https://your-username.github.io/lambda-dynamodb-ui/)
+**GitHub Pages:** [lambda-dynamodb-ui](https://VictorFajardo.github.io/lambda-dynamodb-ui/)
 
 ## ✅ Features
 
@@ -41,7 +41,7 @@ lambda-dynamodb-ui/
 1. **Clone the repo**
 
 ```bash
-git clone https://github.com/your-username/lambda-dynamodb-ui.git
+git clone https://github.com/VictorFajardo/lambda-dynamodb-ui.git
 cd lambda-dynamodb-ui
 ```
 
