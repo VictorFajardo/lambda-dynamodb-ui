@@ -15,7 +15,7 @@ export type Note = {
 // Fetch all notes
 export const getNotes = async (): Promise<Note[]> => {
   const res = await axios.get(API_BASE_URL, HEADERS);
-  return res.data.notes;
+  return res.data.notes.sort((a: Note, b: Note) => a.createdAt.localeCompare(b.createdAt));
 };
 
 // Create a new note
