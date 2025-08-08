@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getNotes } from './services/api';
 import type { Note } from './services/api';
 import { NoteItem } from './components/NoteItem';
@@ -10,7 +10,7 @@ function App() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const fetchNotes = async () => {
+  const fetchNotes = useCallback(async () => {
     try {
       const data = await getNotes();
       console.log('notes fetched');
@@ -20,11 +20,11 @@ function App() {
     } catch (err: unknown) {
       setError(`Failed to fetch notes, error: ${err}`);
     }
-  };
+  }, [loading]);
 
   useEffect(() => {
     fetchNotes();
-  }, []);
+  }, [fetchNotes]);
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
