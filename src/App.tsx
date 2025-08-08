@@ -12,15 +12,16 @@ function App() {
 
   const fetchNotes = useCallback(async () => {
     try {
+      setLoading(true);
       const data = await getNotes();
       console.log('notes fetched');
       setNotes(data);
-      setLoading(false);
-      if (loading) setLoading(false);
     } catch (err: unknown) {
       setError(`Failed to fetch notes, error: ${err}`);
+    } finally {
+      setLoading(false);
     }
-  }, [loading]);
+  }, []);
 
   useEffect(() => {
     fetchNotes();
