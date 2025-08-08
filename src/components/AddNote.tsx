@@ -19,8 +19,8 @@ export function AddNote({ onChange, onError }: AddNoteProps) {
             await createNote(newNote);
             setNewNote('');
             onChange();
-        } catch (err) {
-            onError('Failed to create note');
+        } catch (err: unknown) {
+            onError(`Failed to create note, error: ${err}`);
         } finally {
             setLoading(false);
         }

@@ -13,19 +13,18 @@ function App() {
   const fetchNotes = async () => {
     try {
       const data = await getNotes();
-      console.log("notes fetched");
+      console.log('notes fetched');
       setNotes(data);
       setLoading(false);
       if (loading) setLoading(false);
-    } catch (err) {
-      setError('Failed to fetch notes');
+    } catch (err: unknown) {
+      setError(`Failed to fetch notes, error: ${err}`);
     }
   };
 
   useEffect(() => {
     fetchNotes();
   }, []);
-
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
@@ -35,13 +34,15 @@ function App() {
 
       <AddNote onChange={fetchNotes} onError={setError} />
 
-      {loading ?
-        <Loading /> :
+      {loading ? (
+        <Loading />
+      ) : (
         <ul className="space-y-4">
           {notes.map((note) => (
             <NoteItem key={note.id} note={note} onChange={fetchNotes} />
           ))}
-        </ul>}
+        </ul>
+      )}
     </main>
   );
 }

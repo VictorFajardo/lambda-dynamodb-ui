@@ -18,8 +18,8 @@ export function NoteItem({ note, onChange }: NoteItemProps) {
       await updateNote(note.id, editContent);
       setIsEditing(false);
       onChange();
-    } catch (err) {
-      setError('Failed to update note');
+    } catch (err: unknown) {
+      setError(`Failed to update note, error: ${err}`);
     } finally {
       setLoading(false);
     }
@@ -29,8 +29,8 @@ export function NoteItem({ note, onChange }: NoteItemProps) {
     try {
       await deleteNote(note.id);
       onChange();
-    } catch (err) {
-      setError('Failed to delete note');
+    } catch (err: unknown) {
+      setError(`Failed to delete note, error: ${err}`);
     }
   };
 
