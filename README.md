@@ -29,7 +29,7 @@ lambda-dynamodb-ui/
 │   │   └── api.ts
 │   ├── App.tsx
 │   └── main.tsx
-├── .env               # Not committed – add VITE_API_URL
+├── .env
 ├── tailwind.config.ts
 ├── vite.config.ts
 ├── package.json
