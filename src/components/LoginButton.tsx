@@ -4,6 +4,8 @@ export default function LoginButton() {
   const auth = useAuth();
 
   const handleLogout = () => {
+    auth.removeUser();
+
     const clientId = '3vc8153ff8kdomu3t9fi1hi2cr';
     const cognitoDomain = 'https://notes-demo-989996.auth.us-east-1.amazoncognito.com';
     const redirectUri =
