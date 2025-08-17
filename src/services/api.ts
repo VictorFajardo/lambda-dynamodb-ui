@@ -23,14 +23,14 @@ export const getNotes = async (authUser?: any): Promise<Note[]> => {
   console.log('✨', {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${authUser.user?.id_token}`,
+      Authorization: `Bearer ${authUser.id_token}`,
     },
     withCredentials: true, // <- here, NOT in headers
   });
   const res = await axios.get(API_BASE_URL, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${authUser.user?.id_token}`,
+      Authorization: `Bearer ${authUser.id_token}`,
     },
     withCredentials: true, // <- here, NOT in headers
   });
