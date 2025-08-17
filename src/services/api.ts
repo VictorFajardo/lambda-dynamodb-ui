@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-const HEADERS = {
-  headers: { 'Content-Type': 'application/json' },
-};
+// Generate headers dynamically using the auth user token
+const getHeaders = (authUser?: any) => ({
+  headers: {
+    'Content-Type': 'application/json',
+    ...(authUser?.access_token ? { Authorization: `Bearer ${authUser.access_token}` } : {}),
+  },
+});
 
 export type Note = {
   id: string;
@@ -13,22 +18,22 @@ export type Note = {
 };
 
 // Fetch all notes
-export const getNotes = async (): Promise<Note[]> => {
-  const res = await axios.get(API_BASE_URL, HEADERS);
+export const getNotes = async (authUser?: any): Promise<Note[]> => {
+  const res = await axios.get(API_BASE_URL, getHeaders(authUser));
   return res.data.notes.sort((a: Note, b: Note) => a.createdAt.localeCompare(b.createdAt));
 };
 
 // Create a new note
-export const createNote = async (content: string): Promise<void> => {
-  await axios.post(API_BASE_URL, { content }, HEADERS);
+export const createNote = async (content: string, authUser?: any): Promise<void> => {
+  await axios.post(API_BASE_URL, { content }, getHeaders(authUser));
 };
 
 // Update a note by ID
-export const updateNote = async (id: string, content: string): Promise<void> => {
-  await axios.put(`${API_BASE_URL}/${id}`, { content }, HEADERS);
+export const updateNote = async (id: string, content: string, authUser?: any): Promise<void> => {
+  await axios.put(`${API_BASE_URL}/${id}`, { content }, getHeaders(authUser));
 };
 
 // Delete a note by ID
-export const deleteNote = async (id: string): Promise<void> => {
-  await axios.delete(`${API_BASE_URL}/${id}`, HEADERS);
+export const deleteNote = async (id: string, authUser?: any): Promise<void> => {
+  await axios.delete(`${API_BASE_URL}/${id}`, getHeaders(authUser));
 };
