@@ -36,9 +36,9 @@ function App() {
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
-      <div className="flex">
-        <h1 className="flex-col flex-1 text-2xl font-bold mb-4">📝 Notes</h1>
-        <div className="flex-col items-end gap-1 shrink-0">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl font-bold">📝 Notes</h1>
+        <div className="flex items-center gap-2">
           <LoginButton />
         </div>
       </div>
