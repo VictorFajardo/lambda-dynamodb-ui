@@ -5,9 +5,12 @@ export default function LoginButton() {
 
   const handleLogout = () => {
     const clientId = '3vc8153ff8kdomu3t9fi1hi2cr';
-    const logoutUri = 'https://victorfajardo.github.io';
     const cognitoDomain = 'https://notes-demo-989996.auth.us-east-1.amazoncognito.com';
-    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+    const redirectUri =
+      import.meta.env.MODE === 'development'
+        ? 'http://localhost:5173/lambda-dynamodb-ui/'
+        : 'https://victorfajardo.github.io/lambda-dynamodb-ui/';
+    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`;
   };
 
   if (auth.isLoading) return <div>Loading...</div>;
