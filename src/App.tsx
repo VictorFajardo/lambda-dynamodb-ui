@@ -25,7 +25,7 @@ function App() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [auth.user]);
 
   useEffect(() => {
     fetchNotes();
