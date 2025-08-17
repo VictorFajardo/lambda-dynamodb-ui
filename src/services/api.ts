@@ -8,8 +8,8 @@ const getHeaders = (authUser?: any) => ({
   headers: {
     'Content-Type': 'application/json',
     ...(authUser?.access_token ? { Authorization: `Bearer ${authUser.access_token}` } : {}),
-    // withCredentials: true,
   },
+  withCredentials: true,
 });
 
 export type Note = {
