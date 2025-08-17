@@ -15,7 +15,7 @@ function App() {
   const auth = useAuth();
 
   const fetchNotes = useCallback(async () => {
-    console.log('fetchNotes', auth.user?.profile.email);
+    if (!auth.user) return;
     try {
       setLoading(true);
       const data = await getNotes(auth.user);
