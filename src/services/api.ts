@@ -25,7 +25,6 @@ export const getNotes = async (authUser?: any): Promise<Note[]> => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authUser?.id_token}`,
     },
-    withCredentials: true, // <- here, NOT in headers
   });
   const res = await axios.get(API_BASE_URL, {
     headers: {
