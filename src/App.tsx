@@ -31,7 +31,9 @@ function App() {
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
       <div className="flex">
-        <h1 className="flex-col flex-1 text-2xl font-bold mb-4">📝 Notes</h1>
+        <h1 className="flex-col flex-1 text-2xl font-bold mb-4">
+          📝 Notes - {import.meta.env.MODE}
+        </h1>
         <div className="flex-col items-end gap-1 shrink-0">
           <LoginButton />
         </div>
