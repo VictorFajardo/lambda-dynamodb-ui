@@ -4,6 +4,7 @@ import type { Note } from './services/api';
 import { NoteItem } from './components/NoteItem';
 import { AddNote } from './components/AddNote';
 import { Loading } from './components/Loading';
+import LoginButton from './components/LoginButton';
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -29,7 +30,12 @@ function App() {
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
-      <h1 className="text-2xl font-bold mb-4">📝 Notes</h1>
+      <div className="flex">
+        <h1 className="flex-col flex-1 text-2xl font-bold mb-4">📝 Notes</h1>
+        <div className="flex-col items-end gap-1 shrink-0">
+          <LoginButton />
+        </div>
+      </div>
 
       {error && <p className="text-red-600 mb-2">{error}</p>}
 
