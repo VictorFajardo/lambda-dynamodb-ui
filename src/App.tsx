@@ -15,6 +15,7 @@ function App() {
   const auth = useAuth();
 
   const fetchNotes = useCallback(async () => {
+    console.log('fetchNotes', auth.user?.profile.email);
     try {
       setLoading(true);
       const data = await getNotes(auth.user);
@@ -28,8 +29,10 @@ function App() {
   }, [auth.user]);
 
   useEffect(() => {
-    fetchNotes();
-  }, [fetchNotes]);
+    if (auth.isAuthenticated) {
+      fetchNotes();
+    }
+  }, [auth.isAuthenticated, fetchNotes]);
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
