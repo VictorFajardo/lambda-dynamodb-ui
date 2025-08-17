@@ -20,8 +20,20 @@ export type Note = {
 
 // Fetch all notes
 export const getNotes = async (authUser?: any): Promise<Note[]> => {
-  console.log('✨', { ...getHeaders(authUser), withCredentials: true });
-  const res = await axios.get(API_BASE_URL, { ...getHeaders(authUser), withCredentials: true });
+  console.log('✨', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authUser?.id_token}`,
+    },
+    withCredentials: true, // <- here, NOT in headers
+  });
+  const res = await axios.get(API_BASE_URL, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authUser?.id_token}`,
+    },
+    withCredentials: true, // <- here, NOT in headers
+  });
   return res.data.notes.sort((a: Note, b: Note) => a.createdAt.localeCompare(b.createdAt));
 };
 
