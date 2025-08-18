@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { createNote } from '../services/api';
+import type { User } from 'oidc-client-ts';
 
 interface AddNoteProps {
   onChange: () => void;
   onError: (message: string) => void;
+  user: User;
 }
 
-export function AddNote({ onChange, onError }: AddNoteProps) {
+export function AddNote({ onChange, onError, user }: AddNoteProps) {
   const [newNote, setNewNote] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -16,7 +18,7 @@ export function AddNote({ onChange, onError }: AddNoteProps) {
 
     try {
       setLoading(true);
-      await createNote(newNote);
+      await createNote(newNote, user);
       setNewNote('');
       onChange();
     } catch (err: unknown) {

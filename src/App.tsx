@@ -6,6 +6,7 @@ import { AddNote } from './components/AddNote';
 import { Loading } from './components/Loading';
 import LoginButton from './components/LoginButton';
 import { useAuth } from 'react-oidc-context';
+import type { User } from 'oidc-client-ts';
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -30,10 +31,9 @@ function App() {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      console.log('🚀', auth.user?.profile);
       fetchNotes();
     }
-  }, [auth, fetchNotes]);
+  }, [auth.isAuthenticated, fetchNotes]);
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
@@ -46,17 +46,15 @@ function App() {
 
       {error && <p className="text-red-600 mb-2">{error}</p>}
 
-      <AddNote onChange={fetchNotes} onError={setError} />
+      <AddNote onChange={fetchNotes} onError={setError} user={auth.user as User} />
 
-      {loading ? (
-        <Loading />
-      ) : (
-        <ul className="space-y-4">
-          {notes.map((note) => (
-            <NoteItem key={note.id} note={note} onChange={fetchNotes} />
-          ))}
-        </ul>
-      )}
+      <ul className="space-y-4">
+        {notes.map((note) => (
+          <NoteItem key={note.id} note={note} onChange={fetchNotes} />
+        ))}
+      </ul>
+
+      {loading ?? <Loading />}
     </main>
   );
 }
