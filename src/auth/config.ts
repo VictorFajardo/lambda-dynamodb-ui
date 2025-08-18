@@ -7,4 +7,5 @@ export const cognitoAuthConfig = {
       : 'https://victorfajardo.github.io/lambda-dynamodb-ui/',
   response_type: 'code',
   scope: 'email openid profile',
+  domain: 'https://notes-demo-989996.auth.us-east-1.amazoncognito.com',
 };

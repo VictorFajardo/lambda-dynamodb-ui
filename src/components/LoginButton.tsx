@@ -1,18 +1,18 @@
 import { useAuth } from 'react-oidc-context';
+import { cognitoAuthConfig } from '../auth/config';
 
 export default function LoginButton() {
+  const { client_id, domain } = cognitoAuthConfig;
   const auth = useAuth();
 
   const handleLogout = () => {
     auth.removeUser();
 
-    const clientId = '6og0f8178r15nssb9p55fcftc0';
-    const cognitoDomain = 'https://notes-demo-989996.auth.us-east-1.amazoncognito.com';
     const redirectUri =
       import.meta.env.MODE === 'development'
         ? 'http://localhost:5173/lambda-dynamodb-ui/'
         : 'https://victorfajardo.github.io/lambda-dynamodb-ui/';
-    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`;
+    window.location.href = `${domain}/logout?client_id=${client_id}&logout_uri=${encodeURIComponent(redirectUri)}`;
   };
 
   if (auth.isLoading) return <div>Loading...</div>;
