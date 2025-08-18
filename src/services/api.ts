@@ -2,15 +2,22 @@ import axios from 'axios';
 import type { User } from 'oidc-client-ts';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
+const REQUIRE_AUTH = import.meta.env.VITE_REQUIRE_AUTH === 'true';
 
-// Generate headers dynamically using the auth user token
-const setConfig = (authUser?: User) => ({
-  headers: {
+const setConfig = (authUser?: User) => {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...(authUser?.access_token ? { Authorization: `Bearer ${authUser.id_token}` } : {}),
-  },
-  withCredentials: true,
-});
+  };
+
+  if (REQUIRE_AUTH && authUser?.id_token) {
+    headers['Authorization'] = `Bearer ${authUser.id_token}`;
+  }
+
+  return {
+    headers,
+    withCredentials: true,
+  };
+};
 
 export type Note = {
   id: string;
