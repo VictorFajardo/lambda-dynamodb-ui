@@ -20,7 +20,7 @@ export default function LoginButton() {
 
   return auth.isAuthenticated ? (
     <div className="flex items-center gap-2">
-      <pre className="m-0">Welcome {auth.user?.profile.email}!</pre>
+      <pre className="m-0">Welcome, {auth.user?.profile?.name}!</pre>
       <button
         onClick={handleLogout}
         className="text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center me-2 mb-2 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
