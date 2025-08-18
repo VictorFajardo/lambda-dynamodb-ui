@@ -2,14 +2,13 @@ import axios from 'axios';
 import type { User } from 'oidc-client-ts';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
-const REQUIRE_AUTH = import.meta.env.VITE_REQUIRE_AUTH === 'true';
 
 const setConfig = (authUser?: User) => {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
-  if (REQUIRE_AUTH && authUser?.id_token) {
+  if (authUser?.id_token) {
     headers['Authorization'] = `Bearer ${authUser.id_token}`;
   }
 
