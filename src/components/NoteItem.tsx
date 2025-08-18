@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { type Note, updateNote, deleteNote } from '../services/api';
+import type { User } from 'oidc-client-ts';
 
 interface NoteItemProps {
   note: Note;
-  onChange: () => void; // Callback to refresh notes from parent
+  onChange: () => void;
+  user: User;
 }
 
-export function NoteItem({ note, onChange }: NoteItemProps) {
+export function NoteItem({ note, onChange, user }: NoteItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(note.content);
   const [loading, setLoading] = useState(false);
@@ -15,7 +17,7 @@ export function NoteItem({ note, onChange }: NoteItemProps) {
   const handleSave = async () => {
     try {
       setLoading(true);
-      await updateNote(note.id, editContent);
+      await updateNote(note.id, editContent, user);
       setIsEditing(false);
       onChange();
     } catch (err: unknown) {
@@ -27,7 +29,7 @@ export function NoteItem({ note, onChange }: NoteItemProps) {
 
   const handleDelete = async () => {
     try {
-      await deleteNote(note.id);
+      await deleteNote(note.id, user);
       onChange();
     } catch (err: unknown) {
       setError(`Failed to delete note, error: ${err}`);

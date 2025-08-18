@@ -50,7 +50,7 @@ function App() {
 
       <ul className="space-y-4">
         {notes.map((note) => (
-          <NoteItem key={note.id} note={note} onChange={fetchNotes} />
+          <NoteItem key={note.id} note={note} onChange={fetchNotes} user={auth.user as User} />
         ))}
       </ul>
 
