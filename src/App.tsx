@@ -30,9 +30,10 @@ function App() {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
+      console.log('🚀', auth.user?.profile);
       fetchNotes();
     }
-  }, [auth.isAuthenticated, fetchNotes]);
+  }, [auth, fetchNotes]);
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
