@@ -19,11 +19,13 @@ export default function LoginButton() {
   if (auth.error) return <div>Error: {auth.error.message}</div>;
 
   return auth.isAuthenticated ? (
-    <div className="flex items-center gap-2">
-      <pre className="m-0">Welcome, {auth.user?.profile?.name}!</pre>
+    <div className="flex items-end gap-2">
+      <pre className="m-0">
+        Welcome, <b>{auth.user?.profile.name}</b>!
+      </pre>
       <button
         onClick={handleLogout}
-        className="text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center me-2 mb-2 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+        className="text-white bg-indigo-700 border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-xs px-2 py-1 text-center dark:border-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800"
       >
         Sign out
       </button>
@@ -31,7 +33,7 @@ export default function LoginButton() {
   ) : (
     <button
       onClick={() => auth.signinRedirect()}
-      className="text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center me-2 mb-2 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+      className="text-white bg-indigo-700 border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-xs px-2 py-1 text-center dark:border-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800"
     >
       Login with Cognito!
     </button>
