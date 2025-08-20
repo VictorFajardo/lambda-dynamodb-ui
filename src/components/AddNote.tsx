@@ -34,12 +34,13 @@ export function AddNote({ onChange, onError, user }: AddNoteProps) {
         placeholder="Write a note..."
         value={newNote}
         onChange={(e) => setNewNote(e.target.value)}
-        className="border p-2 w-full mb-2 rounded"
+        className="border p-2 w-full mb-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={!user}
       />
       <button
         type="submit"
-        className="text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center me-2 mb-2 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
-        disabled={loading}
+        className="cursor-pointer text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center me-2 mb-2 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={loading || !user}
       >
         {loading ? 'Saving...' : 'Add Note'}
       </button>
