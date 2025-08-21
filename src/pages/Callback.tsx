@@ -3,7 +3,7 @@ import { useAuth } from 'react-oidc-context';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../components/Loading';
 
-export function Callback() {
+export default function CallbackPage() {
   const auth = useAuth();
   const navigate = useNavigate();
 

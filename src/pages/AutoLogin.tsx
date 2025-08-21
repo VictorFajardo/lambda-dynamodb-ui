@@ -4,7 +4,7 @@ import type { User } from 'oidc-client-ts';
 import { Loading } from '../components/Loading';
 import { useCallback } from 'react';
 
-export default function AutoLogin() {
+export default function AutoLoginPage() {
   const auth = useAuth();
 
   const loginDemo = useCallback(async () => {
