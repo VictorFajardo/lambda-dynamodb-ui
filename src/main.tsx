@@ -6,12 +6,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App.tsx';
 import AutoLoginPage from './pages/AutoLogin.tsx';
 import './index.css';
+import CallbackPage from './pages/Callback.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider {...cognitoAuthConfig}>
       <BrowserRouter basename="/lambda-dynamodb-ui">
         <Routes>
+          <Route path="/callback" element={<CallbackPage />} />
           <Route path="/demo-login" element={<AutoLoginPage />} />
           <Route path="/*" element={<App />} />
         </Routes>
