@@ -21,10 +21,16 @@ This is a simple React + Tailwind frontend to interact with the [lambda-dynamodb
 lambda-dynamodb-ui/
 ├── public/
 ├── src/
+│   ├── auth/
+│   │   ├── config.ts
 │   ├── components/
 │   │   ├── AddNote.tsx
 │   │   ├── Loading.tsx
+│   │   ├── LoginButton.tsx
 │   │   └── NoteItem.tsx
+│   ├── pages/
+│   │   └── AutoLogin.tsx
+│   │   └── Callback.tsx
 │   ├── services/
 │   │   └── api.ts
 │   ├── App.tsx

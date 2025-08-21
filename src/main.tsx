@@ -6,14 +6,14 @@ import { AuthProvider } from 'react-oidc-context';
 import { cognitoAuthConfig } from './auth/config.ts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AutoLogin from './pages/AutoLogin.tsx';
-import { CallbackPage } from './pages/CallbackPage.tsx';
+import { Callback } from './pages/Callback.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider {...cognitoAuthConfig}>
       <BrowserRouter basename="/lambda-dynamodb-ui">
         <Routes>
-          <Route path="/callback" element={<CallbackPage />} />
+          <Route path="/callback" element={<Callback />} />
           <Route path="/demo-login" element={<AutoLogin />} />
           <Route path="/*" element={<App />} />
         </Routes>
