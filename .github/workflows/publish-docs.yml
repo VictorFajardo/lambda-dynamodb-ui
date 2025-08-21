@@ -32,6 +32,13 @@ jobs:
           npm run build
           cp dist/index.html dist/404.html
 
+      - name: Verify 404.html
+        run: |
+          echo "Contents of dist directory:"
+          ls -l dist
+          echo "Checking for 404.html..."
+          test -f dist/404.html && echo "✅ 404.html exists" || (echo "❌ 404.html missing" && exit 1)
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
