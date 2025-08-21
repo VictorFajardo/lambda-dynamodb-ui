@@ -11,14 +11,22 @@ interface NoteItemProps {
 
 export function NoteItem({ note, onChange, user }: NoteItemProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editContent, setEditContent] = useState(note.content);
+  const [editNote, setEditNote] = useState(note);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setEditNote((prevState: Note) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleSave = async () => {
     try {
       setLoading(true);
-      await updateNote(note.id, editContent, user);
+      await updateNote(note.id, editNote, user);
       setIsEditing(false);
       onChange(false);
     } catch (err: unknown) {
@@ -40,7 +48,7 @@ export function NoteItem({ note, onChange, user }: NoteItemProps) {
 
   useEffect(() => {
     setLoading(false);
-  }, [note.content]);
+  }, [note]);
 
   return (
     <li className="flex flex-col relative gap-4 border rounded-lg p-3 shadow-sm bg-white dark:bg-gray-800">
@@ -50,17 +58,29 @@ export function NoteItem({ note, onChange, user }: NoteItemProps) {
           {loading ? (
             <Loading />
           ) : isEditing ? (
-            <textarea
-              className="border rounded p-2 w-full"
-              value={editContent}
-              onChange={(e) => setEditContent(e.target.value)}
-            />
+            <>
+              <input
+                type="text"
+                name="title"
+                className="border rounded p-2 w-full"
+                value={editNote.title}
+                onChange={handleChange}
+              />
+              <textarea
+                name="content"
+                className="border rounded p-2 w-full"
+                value={editNote.content}
+                onChange={handleChange}
+              />
+            </>
           ) : (
-            <div className="flex flex-col justify-between item-center flex-1">
+            <div className="flex flex-col justify-between flex-1">
+              <p className="font-bold text-sm text-gray-800 dark:text-gray-200 ">{note.title}</p>
               <p className="whitespace-pre-wrap text-sm text-gray-800 dark:text-gray-200">
                 {note.content}
               </p>
               <small className="text-xs text-gray-500 mt-2">
+                Created by: <b>{note.userName ?? 'Unknown User'}</b> | Date:{' '}
                 {new Date(note.createdAt).toLocaleString()}
               </small>
             </div>
@@ -74,7 +94,9 @@ export function NoteItem({ note, onChange, user }: NoteItemProps) {
                 type="button"
                 onClick={handleSave}
                 className="cursor-pointer w-full text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-2 py-1 text-center mb-2 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={loading || note.content === editContent}
+                disabled={
+                  loading || (note.title === editNote.title && note.content === editNote.content)
+                }
               >
                 Save
               </button>
