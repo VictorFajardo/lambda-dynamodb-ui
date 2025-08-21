@@ -37,6 +37,12 @@ function App() {
     }
   }, [auth.isAuthenticated, fetchNotes]);
 
+  useEffect(() => {
+    if (window.location.search.includes('code=') && window.location.search.includes('state=')) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [auth]);
+
   console.log(
     `${auth.isAuthenticated ? '✔' : '❌'} auth.isAuthenticated: ${auth.isAuthenticated}`
   );
