@@ -40,7 +40,7 @@ export default function AutoLoginPage() {
     const storageKey = `oidc.user:${auth.settings.authority}:${auth.settings.client_id}`;
     sessionStorage.setItem(storageKey, JSON.stringify(demoUser));
 
-    window.location.href = '/';
+    window.location.href = import.meta.env.BASE_URL;
   }, [auth.settings.authority, auth.settings.client_id]);
 
   useEffect(() => {
