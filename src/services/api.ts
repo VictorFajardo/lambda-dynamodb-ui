@@ -18,8 +18,15 @@ const setConfig = (authUser?: User) => {
   };
 };
 
+export type NewNote = {
+  title: string;
+  content: string;
+};
+
 export type Note = {
   id: string;
+  userName: string;
+  title: string;
   content: string;
   createdAt: string;
 };
@@ -31,13 +38,17 @@ export const getNotes = async (authUser?: User): Promise<Note[]> => {
 };
 
 // Create a new note
-export const createNote = async (content: string, authUser?: User): Promise<void> => {
-  await axios.post(API_BASE_URL, { content }, setConfig(authUser));
+export const createNote = async (note: NewNote, authUser?: User): Promise<void> => {
+  await axios.post(API_BASE_URL, { ...note }, setConfig(authUser));
 };
 
 // Update a note by ID
-export const updateNote = async (id: string, content: string, authUser?: User): Promise<void> => {
-  await axios.put(`${API_BASE_URL}/${id}`, { content }, setConfig(authUser));
+export const updateNote = async (id: string, note: NewNote, authUser?: User): Promise<void> => {
+  await axios.put(
+    `${API_BASE_URL}/${id}`,
+    { title: note.title, content: note.content },
+    setConfig(authUser)
+  );
 };
 
 // Delete a note by ID
