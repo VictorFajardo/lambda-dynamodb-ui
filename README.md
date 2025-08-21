@@ -30,7 +30,6 @@ lambda-dynamodb-ui/
 │   │   └── NoteItem.tsx
 │   ├── pages/
 │   │   └── AutoLogin.tsx
-│   │   └── Callback.tsx
 │   ├── services/
 │   │   └── api.ts
 │   ├── App.tsx
