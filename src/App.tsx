@@ -32,20 +32,20 @@ function App() {
   );
 
   useEffect(() => {
-    if (auth.isAuthenticated) {
+    if (
+      window.location.search.includes('code=') &&
+      window.location.search.includes('state=') &&
+      auth.isAuthenticated
+    ) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [auth.isAuthenticated]);
+
+  useEffect(() => {
+    if (window.location.search === '' && auth.isAuthenticated) {
       fetchNotes();
     }
   }, [auth.isAuthenticated, fetchNotes]);
-
-  // useEffect(() => {
-  //   if (window.location.search.includes('code=') && window.location.search.includes('state=')) {
-  //     window.history.replaceState({}, document.title, window.location.pathname);
-  //   }
-  // }, [auth]);
-
-  console.log(
-    `${auth.isAuthenticated ? '✔' : '❌'} auth.isAuthenticated: ${auth.isAuthenticated}`
-  );
 
   return (
     <main className="p-4 max-w-xl mx-auto font-sans text-gray-100">
