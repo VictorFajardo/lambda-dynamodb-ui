@@ -9,15 +9,14 @@ export default function AutoLoginPage() {
 
   const loginDemo = useCallback(async () => {
     const resp = await fetch(`${import.meta.env.VITE_API_URL}/demo-login`, { method: 'POST' });
-    const tokens = await resp.json();
-    const expiresAt = Math.floor(Date.now() / 1000) + tokens.expires_in;
+    const { AccessToken, ExpiresIn, IdToken, RefreshToken, TokenType } = await resp.json();
 
     const demoUser: User = {
-      id_token: tokens.id_token,
-      access_token: tokens.access_token,
-      refresh_token: tokens.refresh_token,
-      expires_in: tokens.expires_in,
-      token_type: 'Bearer',
+      id_token: IdToken,
+      access_token: AccessToken,
+      refresh_token: RefreshToken,
+      expires_in: ExpiresIn,
+      token_type: TokenType,
       scope: 'openid profile email',
       profile: {
         sub: 'demo-subject-id',
@@ -26,7 +25,7 @@ export default function AutoLoginPage() {
         iss: auth.settings.authority,
         aud: auth.settings.client_id,
         name: 'Demo User',
-        exp: expiresAt,
+        exp: Math.floor(Date.now() / 1000) + ExpiresIn,
         iat: Math.floor(Date.now() / 1000),
       },
       session_state: null,
